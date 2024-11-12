@@ -1,0 +1,158 @@
+/* FireInformation.css */
+
+/* 전체 컨테이너 설정 */
+.page-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 메인 콘텐츠 스타일 */
+.fire-info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; /* 가운데 정렬 */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f0f4f8; /* 배경색 추가 */
+}
+
+/* 왼쪽 폼 섹션 */
+.fire-form-section {
+    width: 45%; /* 너비 설정으로 가운데 위치 */
+    max-width: 600px;
+}
+
+.fire-form-section h1 {
+    font-size: 36px; /* 제목 크기 확대 */
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #2c3e50; /* 제목 색상 */
+}
+
+.fire-form label {
+    display: block;
+    margin-top: 20px;
+    font-size: 18px; /* 라벨 크기 확대 */
+    font-weight: bold;
+    color: #34495e; /* 라벨 색상 */
+}
+
+.fire-form input[type="text"],
+.fire-form input[type="datetime-local"],
+.fire-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px; /* 입력 창 텍스트 크기 확대 */
+    box-sizing: border-box;
+    background-color: #fff; /* 입력창 배경색 */
+    color: #2c3e50; /* 텍스트 색상 */
+}
+
+.fire-form input[type="range"] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.fire-form input[type="radio"] {
+    margin-right: 8px;
+    transform: scale(1.2); /* 라디오 버튼 크기 확대 */
+}
+
+.submit-button {
+    background-color: #d9534f;
+    color: white;
+    padding: 12px 24px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px; /* 버튼 텍스트 크기 확대 */
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #c9302c;
+}
+
+/* 오른쪽 픽토그램 섹션 */
+.fire-pictogram-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30%;
+    padding: 20px;
+    background-color: #e0e6ed; /* 픽토그램 섹션 배경색 */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 픽토그램 스타일 - 직사각형으로 변경 */
+.pictogram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* 직사각형으로 설정하여 가로 너비를 채움 */
+    height: 150px; /* 세로 높이 설정 */
+    margin-bottom: 20px;
+    border-radius: 8px; /* 사각형 모서리 둥글게 설정 */
+    background-color: #ecf0f1; /* 픽토그램 배경색 */
+    font-size: 22px; /* 픽토그램 텍스트 크기 확대 */
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.pictogram:hover {
+    transform: scale(1.05); /* 호버 시 크기 확대 효과 */
+    background-color: #d1d8e0; /* 호버 시 배경색 */
+}
+
+.fire-type-icon .fire-icon {
+    font-size: 36px; /* 불 아이콘 크기 확대 */
+    color: #ff4500; /* 불 아이콘 색상 */
+}
+
+/* 반응형 조정 */
+@media (max-width: 768px) {
+    .fire-info-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fire-form-section,
+    .fire-pictogram-section {
+        width: 100%;
+    }
+
+    .fire-pictogram-section {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+    }
+
+    .pictogram {
+        width: 45%;
+        height: 80px;
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+}
