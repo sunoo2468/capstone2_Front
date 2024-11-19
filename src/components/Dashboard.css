@@ -107,156 +107,131 @@
     justify-content: space-between;
     padding: 2rem 2rem 0 2rem;
     gap: 1.5rem;
+    height: calc(100vh - 520px); /* 하단 여백 없도록 */
 }
 
 /* 주요 지표 패널 스타일 */
-.metrics-panel {
-    width: 22%;
-    padding: 1.5rem;
-    background: #f8f9fa;
+/* 왼쪽 패널 스타일 */
+.left-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 패널 간격 유지 */
+}
+
+.metrics-panel, .live-reports {
+    background: white;
+    padding: 20px; /* 패널 내부 여백 */
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.metrics-panel:hover {
-    transform: translateY(-4px); /* 호버 시 살짝 위로 올라가도록 */
-}
-
-.metrics-panel h3 {
-    color: #d9534f;
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #d9534f;
-    padding-bottom: 5px;
-}
-
-.metrics-panel p {
-    font-size: 1.1rem;
-    margin: 0.5rem 0;
-    line-height: 1.5;
-}
-
-.metrics-panel button {
-    background-color: #337ab7;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 1.5rem;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
-}
-
-.metrics-panel button:hover {
-    background-color: #286090;
+    height: 250px; /* 적절한 높이로 조정 */
+    overflow: hidden;
 }
 
 /* 중앙 패널 스타일 */
-.main-panel {
-    width: 56%;
+.center-panel {
+    flex: 1.5;
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.map-container {
-    background-color: #eaecef;
-    padding: 2rem;
+    flex-direction: column; /* 제목과 카드 세로 정렬 */
+    justify-content: flex-start; /* 상단부터 정렬 */
+    align-items: center;
+    padding: 20px;
+    background: white; /* 통일된 배경 */
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 560px;
+}
+
+/* QuickActions 스타일 */
+.quick-actions-container {
+    padding: 20px;
+    margin-top: 5px;
+    position: relative; /* 제목과 연동을 위해 상대 위치 */
+    display: flex;
+    flex-direction: column; /* 제목과 카드 세로 정렬 */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     text-align: center;
-    transition: transform 0.3s ease;
 }
 
-.map-container:hover {
-    transform: translateY(-4px);
+.quick-actions-container h3 {
+    color: #d9534f;
+    font-size: 2rem; /* 타이틀 크기 확대 */
+    margin-bottom: 30px;
+    border-bottom: 3px solid #d9534f; /* 강조를 위한 선 두께 */
+    display: inline-block;
+    padding-bottom: 10px;
 }
 
-.map-placeholder {
-    height: 200px;
-    background-color: #aaa;
-    border-radius: 8px;
-    line-height: 200px;
-    color: #333;
-    font-size: 1.3rem;
+/* 카드 컨테이너 */
+.quick-actions-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 카드 간 간격 */
+    flex-wrap: wrap; /* 반응형을 위한 카드 래핑 */
+    width: 100%;
+    max-width: 900px;
+}
+
+/* QuickActions 카드 */
+.action-card {
+    background: linear-gradient(135deg, #ffc107, #ff9800);
+    border-radius: 12px;
+    padding: 15px; /* 내부 여백 최소화 */
+    flex: 1;
+    max-width: 220px; /* 박스 크기 고정 */
+    min-width: 150px; /* 최소 크기 설정 */
+    height: 350px; /* 카드 높이를 늘림 */
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column; /* 아이콘과 텍스트 세로 정렬 */
+    align-items: center;
+    justify-content: center;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.action-card .icon {
+    font-size: 2.5rem; /* 아이콘 크기 */
+    margin-bottom: 10px;
+}
+
+.action-card h4 {
+    font-size: 1.4rem; /* 제목 크기 */
+    margin-bottom: 8px;
     font-weight: bold;
 }
 
-.live-reports {
-    background-color: #f8f9fa;
-    padding: 1.5rem;
+.action-card p {
+    font-size: 1rem; /* 설명 크기 */
+    line-height: 1.4;
+}
+
+/* 오른쪽 패널 스타일 */
+.right-panel {
+    flex: 1;
+    background: #f4f6f9;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    height: 560px; /* 패널 높이를 화면과 조화롭게 조정 */
 }
 
-.live-reports:hover {
-    transform: translateY(-4px);
-}
-
-.live-reports h3 {
-    color: #d9534f;
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #d9534f;
-    padding-bottom: 5px;
-}
-
-.live-reports p {
-    font-size: 1.1rem;
-    margin: 0.5rem 0;
-}
-
-/* 빠른 링크 패널 스타일 */
-.quick-links-panel {
-    width: 22%;
-    padding: 1.5rem;
-    background: #f8f9fa;
+.map-placeholder {
+    height: 100%; /* 패널 크기에 맞춤 */
+    background-color: #aaa;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.quick-links-panel:hover {
-    transform: translateY(-4px);
-}
-
-.quick-links-panel h3 {
-    color: #d9534f;
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #d9534f;
-    padding-bottom: 5px;
-}
-
-.quick-links-panel button {
-    background-color: #5cb85c;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
-}
-
-.quick-links-panel button:hover {
-    background-color: #4cae4c;
-}
-
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-    .dashboard-content {
-        flex-direction: column;
-    }
-
-    .metrics-panel, .quick-links-panel, .main-panel {
-        width: 100%;
-        margin-bottom: 1rem;
-    }
+    line-height: 500px; /* 줄어든 높이에 맞게 정렬 */
+    text-align: center;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
 }

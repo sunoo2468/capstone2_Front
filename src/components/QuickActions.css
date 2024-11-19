@@ -1,0 +1,61 @@
+.quick-actions-container {
+    padding: 20px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.quick-actions-container h3 {
+    color: #d9534f;
+    font-size: 2rem; /* 타이틀 크기 확대 */
+    margin-bottom: 30px;
+    border-bottom: 3px solid #d9534f; /* 강조를 위한 선 두께 */
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.action-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 카드 간 간격 */
+    flex-wrap: wrap;
+}
+
+.action-card {
+    background: linear-gradient(135deg, #ffc107, #ff9800);
+    border-radius: 12px;
+    padding: 15px; /* 내부 여백 최소화 */
+    flex: 1;
+    max-width: 220px; /* 박스 크기 고정 */
+    max-height: none; /* 고정 높이 제거 */
+    height: 350px; /* 원하는 높이로 설정 */
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.action-card .icon {
+    font-size: 2.5rem; /* 아이콘 크기 */
+    margin-bottom: 10px;
+}
+
+.action-card h4 {
+    font-size: 1.4rem; /* 제목 크기 */
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.action-card p {
+    font-size: 1rem; /* 설명 크기 */
+    line-height: 1.4;
+}
