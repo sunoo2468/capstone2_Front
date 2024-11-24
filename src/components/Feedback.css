@@ -1,0 +1,70 @@
+/* src/components/Feedback.css */
+.feedback {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feedback h1 {
+    color: #5cb85c;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.feedback form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feedback textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    resize: vertical;
+    font-size: 1em;
+}
+
+.feedback button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.feedback button:hover {
+    background-color: #4cae4c;
+}
+
+.feedback ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.feedback li {
+    border: 1px solid #ddd;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s;
+}
+
+.feedback li:hover {
+    background-color: #e9f7ef;
+}
+
+.feedback li strong {
+    color: #5cb85c;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
