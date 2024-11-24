@@ -12,10 +12,38 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [users, setUsers] = useState([{ username: 'admin', password: 'password' }]);
 
-    const handleLogin = () => setIsLoggedIn(true);
+    const handleLogin = (username, password) => {
+        if (!users || !Array.isArray(users)) {
+            console.error('사용자 데이터가 올바르지 않습니다.');
+            return false;
+        }
+
+        const userExists = users.some(
+            user => user.username === username.trim() && user.password === password.trim()
+        );
+
+        if (userExists) {
+            setIsLoggedIn(true);
+            return true;
+        }
+
+        return false;
+    };
 
     const handleSignup = (username, password) => {
-        setUsers([...users, { username, password }]);
+        if (!username || !password) {
+            alert('아이디와 비밀번호를 입력해주세요.');
+            return false;
+        }
+
+        const userExists = users.some(user => user.username === username.trim());
+        if (userExists) {
+            alert('이미 존재하는 사용자 이름입니다.');
+            return false;
+        }
+
+        setUsers([...users, { username: username.trim(), password: password.trim() }]);
+        return true;
     };
 
     return (

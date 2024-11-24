@@ -15,10 +15,10 @@ function FireInformation() {
         fireTime: '',
         fireLocation: '',
         subLocation: '',
-        fireType: '산업용',
-        fireSize: '중',
-        weather: '맑음',
-        traffic: 'light'
+        fireType: '',
+        fireSize: '',
+        weather: '',
+        traffic: ''
     });
 
     const [showPictograms, setShowPictograms] = useState({
@@ -94,21 +94,28 @@ function FireInformation() {
 
                         <label>날씨 상황:</label>
                         <select name="weather" value={fireData.weather} onChange={handleChange}>
+                            <option value="">날씨 선택</option> {/* 기본 선택 옵션 추가 */}
                             <option value="맑음">맑음</option>
                             <option value="흐림">흐림</option>
                             <option value="비">비</option>
                             <option value="눈">눈</option>
+                            <option value="폭우">폭우</option>
+                            <option value="바람">바람</option>
+                            <option value="습함">습함</option>
                         </select>
 
                         <label>혼잡도 상태:</label>
                         <select name="traffic" value={fireData.traffic} onChange={handleChange}>
+                            <option value="">혼잡도 선택</option> {/* 기본 선택 옵션 추가 */}
                             <option value="여유">여유</option>
                             <option value="보통">보통</option>
                             <option value="혼잡">혼잡</option>
+                            <option value="매우혼잡">매우혼잡</option>
                         </select>
 
                         <label>화재 유형:</label>
                         <select name="fireType" value={fireData.fireType} onChange={handleChange}>
+                            <option value="">화재 유형 선택</option> {/* 기본 선택 옵션 추가 */}
                             <option value="산업용">산업용</option>
                             <option value="차량">차량</option>
                             <option value="산불">산불</option>
