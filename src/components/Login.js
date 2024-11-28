@@ -31,25 +31,27 @@ function Login({ onLogin, users }) {
 
     return (
         <div className="login">
-            <h1>로그인</h1>
-            <form onSubmit={handleLogin}>
-                <input
-                    type="text"
-                    placeholder="아이디"
-                    value={username}
-                    onChange={(e) => { setUsername(e.target.value); setErrors((prev) => ({ ...prev, username: false })); }}
-                    className={errors.username ? 'error' : ''}
-                />
-                <input
-                    type="password"
-                    placeholder="비밀번호"
-                    value={password}
-                    onChange={(e) => { setPassword(e.target.value); setErrors((prev) => ({ ...prev, password: false })); }}
-                    className={errors.password ? 'error' : ''}
-                />
-                <button type="submit">로그인</button>
-            </form>
-            <p>계정이 없으신가요? <Link to="/signup">회원가입하기</Link></p>
+            <div className="login-container">
+                <h1>로그인</h1>
+                <form onSubmit={handleLogin}>
+                    <input
+                        type="text"
+                        placeholder="아이디"
+                        value={username}
+                        onChange={(e) => { setUsername(e.target.value); setErrors((prev) => ({ ...prev, username: false })); }}
+                        className={errors.username ? 'error' : ''}
+                    />
+                    <input
+                        type="password"
+                        placeholder="비밀번호"
+                        value={password}
+                        onChange={(e) => { setPassword(e.target.value); setErrors((prev) => ({ ...prev, password: false })); }}
+                        className={errors.password ? 'error' : ''}
+                    />
+                    <button type="submit">로그인</button>
+                </form>
+                <p>계정이 없으신가요? <Link to="/signup">회원가입하기</Link></p>
+            </div>
         </div>
     );
 }

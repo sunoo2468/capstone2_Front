@@ -52,7 +52,7 @@
 
 .fire-form label {
     display: block;
-    margin-top: 12px; /* 간격을 기존 대비 30% 줄임 (기존 16px → 12px) */
+    margin-top: 50px; /* 간격을 기존 대비 30% 줄임 (기존 16px → 12px) */
     font-size: 26px; /* 글자 크기를 더 확대 (기존 24px → 26px) */
     font-weight: bold;
     color: #34495e;
@@ -69,25 +69,32 @@
     width: 100%;
     padding: 12px; /* 기존 10px에서 확대 */
     margin-top: 8px;
-    font-size: 18px; /* 글씨 크기를 더 키움 */
+    font-size: 23px; /* 글씨 크기를 더 키움 */
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
+.fire-form label.radio-label {
+    font-size: 23px; /* 텍스트 크기 확대 */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* 라디오 버튼과 텍스트 간의 간격 */
+}
+
 .fire-form input[type="radio"] {
-    margin-right: 12px; /* 간격 조정 */
     transform: scale(1.5); /* 라디오 버튼 크기 확대 */
+    margin-right: 8px; /* 라디오 버튼과 텍스트 간의 기본 간격 */
 }
 
 .submit-button {
     background-color: #d9534f;
     color: white;
     padding: 15px; /* 버튼 높이 확대 */
-    margin-top: 30px;
+    margin-top: 60px;
     border: none;
     border-radius: 4px;
-    font-size: 20px; /* 버튼 글씨 크기 확대 */
+    font-size: 25px; /* 버튼 글씨 크기 확대 */
     cursor: pointer;
     width: 100%;
     transition: background-color 0.3s ease;

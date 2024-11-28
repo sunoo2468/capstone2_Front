@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 import './Signup.css';
 
 function Signup({ onSignup }) {
@@ -43,52 +43,57 @@ function Signup({ onSignup }) {
 
     return (
         <div className="signup">
-            <h1>🔥 회원가입 🔥</h1>
-            <form onSubmit={handleSignup}>
-                <input
-                    type="text"
-                    placeholder="ID"
-                    value={id}
-                    onChange={(e) => { setId(e.target.value); setErrors((prev) => ({ ...prev, id: false })); }}
-                    className={errors.id ? 'error' : ''}
-                />
-                <input
-                    type="text"
-                    placeholder="이름"
-                    value={name}
-                    onChange={(e) => { setName(e.target.value); setErrors((prev) => ({ ...prev, name: false })); }}
-                    className={errors.name ? 'error' : ''}
-                />
-                <input
-                    type="password"
-                    placeholder="비밀번호"
-                    value={password}
-                    onChange={(e) => { setPassword(e.target.value); setErrors((prev) => ({ ...prev, password: false })); }}
-                    className={errors.password ? 'error' : ''}
-                />
-                <input
-                    type="password"
-                    placeholder="비밀번호 확인"
-                    value={confirmPassword}
-                    onChange={(e) => { setConfirmPassword(e.target.value); setErrors((prev) => ({ ...prev, confirmPassword: false })); }}
-                    className={errors.confirmPassword ? 'error' : ''}
-                />
-                <input
-                    type="email"
-                    placeholder="이메일"
-                    value={email}
-                    onChange={(e) => { setEmail(e.target.value); setErrors((prev) => ({ ...prev, email: false })); }}
-                    className={errors.email ? 'error' : ''}
-                />
-                <input
-                    type="text"
-                    placeholder="휴대전화 번호"
-                    value={mobilePhone}
-                    onChange={(e) => { setMobilePhone(e.target.value); setErrors((prev) => ({ ...prev, mobilePhone: false })); }}
-                    className={errors.mobilePhone ? 'error' : ''}
-                />
-                <button type="submit">계정 생성</button>
-            </form>
+            <div className="signup-container">
+                <h1>회원가입</h1>
+                <form onSubmit={handleSignup}>
+                    <input
+                        type="text"
+                        placeholder="ID"
+                        value={id}
+                        onChange={(e) => { setId(e.target.value); setErrors((prev) => ({ ...prev, id: false })); }}
+                        className={errors.id ? 'error' : ''}
+                    />
+                    <input
+                        type="text"
+                        placeholder="이름"
+                        value={name}
+                        onChange={(e) => { setName(e.target.value); setErrors((prev) => ({ ...prev, name: false })); }}
+                        className={errors.name ? 'error' : ''}
+                    />
+                    <input
+                        type="password"
+                        placeholder="비밀번호"
+                        value={password}
+                        onChange={(e) => { setPassword(e.target.value); setErrors((prev) => ({ ...prev, password: false })); }}
+                        className={errors.password ? 'error' : ''}
+                    />
+                    <input
+                        type="password"
+                        placeholder="비밀번호 확인"
+                        value={confirmPassword}
+                        onChange={(e) => { setConfirmPassword(e.target.value); setErrors((prev) => ({ ...prev, confirmPassword: false })); }}
+                        className={errors.confirmPassword ? 'error' : ''}
+                    />
+                    <input
+                        type="email"
+                        placeholder="이메일"
+                        value={email}
+                        onChange={(e) => { setEmail(e.target.value); setErrors((prev) => ({ ...prev, email: false })); }}
+                        className={errors.email ? 'error' : ''}
+                    />
+                    <input
+                        type="text"
+                        placeholder="휴대전화 번호"
+                        value={mobilePhone}
+                        onChange={(e) => { setMobilePhone(e.target.value); setErrors((prev) => ({ ...prev, mobilePhone: false })); }}
+                        className={errors.mobilePhone ? 'error' : ''}
+                    />
+                    <button type="submit">계정 생성</button>
+                </form>
+                <p>
+                    계정이 이미 있으신가요? <Link to="/login">로그인하기</Link>
+                </p>
+            </div>
         </div>
     );
 }

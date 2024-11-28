@@ -1,82 +1,87 @@
+/* src/components/Signup.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f2f2f2;
+}
+
 .signup {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #f2f2f2, #e6e6e6);
+}
+
+.signup-container {
+    width: 1000px; /* 창 크기를 키웠습니다 */
+    padding: 80px;
+    border-radius: 30px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    background: #fff;
 }
 
 .signup h1 {
-    color: #FF5722;
-    font-size: 26px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.signup h1::before,
-.signup h1::after {
-    content: "🔥";
+    font-size: 4rem;
+    color: #333;
+    margin-bottom: 30px;
 }
 
 .signup form {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .signup input {
+    padding: 15px 20px;
     margin-bottom: 15px;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+    border: none;
+    border-radius: 25px;
+    background-color: #f2f2f2;
+    font-size: 2rem;
+    color: #333;
 }
 
 .signup input:focus {
     outline: none;
-    border-color: #4CAF50;
-    box-shadow: 0px 0px 6px rgba(76, 175, 80, 0.5);
+    background-color: #e0e0e0;
 }
 
 .signup input.error {
-    border-color: #FF0000;
-    background-color: #FFF5F5;
+    border: 2px solid #ff4d4d;
 }
 
 .signup button {
-    padding: 12px;
-    background-color: #4CAF50;
-    color: white;
+    padding: 15px 20px;
     border: none;
+    border-radius: 25px;
+    background-color: #4ad395;
+    color: #fff;
+    font-size: 2rem;
     cursor: pointer;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s;
 }
 
 .signup button:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
+    background-color: #41c286;
 }
 
-.signup button:active {
-    transform: translateY(0);
+.signup p {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #666;
+    text-align: center;
 }
 
-.signup form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+.signup p a {
+    color: #4ad395;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup p a:hover {
+    text-decoration: underline;
 }
