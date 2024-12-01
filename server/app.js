@@ -13,95 +13,48 @@ var app = express();
 // 미들웨어 설정
 app.use(bodyParser.json());
 app.use(cors({
-  origin: '*', // 또는 프론트엔드 도메인(http://localhost:3000)으로 제한
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type'],
 }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-
 var loginRouter = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/routers/LoginRouters.js'); // 파일 경로 정확히 확인
 var signupRouter = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/routers/SignupRouters.js'); // 파일 경로 정확히 확인
+var FireinformationRouter = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/routers/FireInformationRouters.js'); // 파일 경로 정확히 확인
+var FeedbackRouter = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/routers/FeedbackRouters.js'); // 파일 경로 정확히 확인
 
+// // React 빌드 파일 제공 코드 주석 처리 (빌드 안 했으므로 필요 없음)
+// app.use(express.static(path.join(__dirname, 'finalcap2', 'build')));
 
+// // React의 모든 경로를 index.html로 연결 코드 주석 처리
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'finalcap2', 'build', 'index.html'));
+// });
 
-// React 빌드 파일 제공
-app.use(express.static(path.join(__dirname, 'finalcap2', 'build')));
-
-// React의 모든 경로를 index.html로 연결
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'finalcap2', 'build', 'index.html'));
-});
-
+// API 라우터 설정
 app.use('/api', loginRouter);
 app.use('/api', signupRouter);
+app.use('/api', FireinformationRouter);
+app.use('/api', FeedbackRouter);
+// server.js
+app.use((req, res, next) => {
+  if (req.url.includes('%08')) {
+    console.error('Invalid URL detected:', req.url);
+    return res.status(400).send('Invalid request URL.');
+  }
+  next();
+});
+app.use((req, res, next) => {
+  console.log(`Request URL: ${req.url}, Method: ${req.method}`);
+  next();
+});
 
 
-// // Multer ?????? ??ㅼ??
-// var storage = multer.diskStorage({
-// 	destination: function (req, file, cb) {
-// 			var userDirectory = req.body.uploadPath || 'default_uploads';
-// 			if (!fs.existsSync(userDirectory)) {
-// 					fs.mkdirSync(userDirectory, { recursive: true });
-// 			}
-// 			cb(null, userDirectory);
-// 	},
-// 	filename: function (req, file, cb) {
-// 			var uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-// 			cb(null, uniqueSuffix + '-' + file.originalname);
-// 	}
-// });
-// var upload = multer({ storage: storage });
-// // API
-// var apiUrl = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst';
-// var serviceKey = 'DSQRNtEytEgIHvSIiIc0BVZP6fHjNZvzWzJO7dZqPVURPfN0TLjYV89A6Ht4+Iv905FtGseBc/5Ji7sYOEcXcw==';
+/////////////////////////////////////////////////////////////
 
-// //엑셀 경로
-// var excelFilePath = '/Users/oseli/Desktop/캡스톤 2/기상청41_단기예보 조회서비스_오픈API활용가이드_(240715)/지역정보.xlsx';
-
-// // ?????? ?????쇱????? ???移?媛? 李얘린 ??⑥??
-// function getLocationCoordinates(city, district) {
-// var workbook = xlsx.readFile(excelFilePath);
-// var sheet = workbook.Sheets[workbook.SheetNames[0]]; // 泥? 踰?吏? ??????
-// var data = xlsx.utils.sheet_to_json(sheet);
-
-// // ??ъ?⑹??媛? ?????ν?? ??????(city)??? 援?(district)??? ??대?뱁????? ???紐? 李얘린
-// var locationData = data.find(row => row['??????'] === city && row['援ш뎔'] === district);
-
-// if (locationData) {
-// 		return { nx: locationData['nx'], ny: locationData['ny'] };
-// }
-// return null; // ??쇱???????? 媛???? ?????쇰㈃ null 諛????
-// }
-
-
-// 로그인
-// app.post('/login', async (req, res) => {
-//     const { user_id, user_password } = req.body;
-
-//     const sql = 'SELECT * FROM user_table WHERE user_id = $1';
-//     try {
-//         const result = await pool.query(sql, [user_id]);
-//         const user = result.rows[0];
-
-//         if (!user) {
-//             return res.status(400).json({ result: "error", message: "User not found" });
-//         }
-
-//         const isPasswordMatch = await bcrypt.compare(user_password, user.user_password);
-//         if (!isPasswordMatch) {
-//             return res.status(400).json({ result: "error", message: "Incorrect password" });
-//         }
-
-//         res.cookie('USER_COOKIE_KEY', JSON.stringify(user), { httpOnly: true });
-//         res.redirect('/dashboard');
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).json({ result: "error", message: "Server error" });
-//     }
-// });
-
+/////////////////////////////////////////////////////////////
 // // 로그아웃
 // app.get('/logout', (req, res) => {
 //     res.clearCookie('USER_COOKIE_KEY');

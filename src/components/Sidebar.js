@@ -11,6 +11,7 @@ function Sidebar() {
                 <li><Link to="/report">Report</Link></li>
                 <li><Link to="/feedback">Feedback</Link></li>
                 <li><Link to="/login">Login</Link></li>
+								<li><Link to="/feedbackinformation">feedbackinformation</Link></li>
             </ul>
         </nav>
     );

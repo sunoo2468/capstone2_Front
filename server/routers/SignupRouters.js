@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt');
 const pool = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/pgConnect.js'); // PostgreSQL 연결
 const SignupService = require('../services/SignupService.js'); // 회원가입 로직 분리
 
-const router = express.Router(); // Express 라우터 초기화
+const Singuprouter = express.Router(); // Express 라우터 초기화
 
 // 회원가입 엔드포인트
-router.post('/signup', async (req, res) => {
+Singuprouter.post('/signup', async (req, res) => {
     const { 
         user_id, 
         user_name, 
@@ -37,4 +37,4 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = Singuprouter;

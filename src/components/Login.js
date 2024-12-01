@@ -2,14 +2,20 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
-function Login() {
-    const [username, setUsername] = useState(''); // 사용자 이름 상태
-    const [password, setPassword] = useState(''); // 비밀번호 상태
-    const [errorMessage, setErrorMessage] = useState(''); // 오류 메시지 상태
+function Login({ onLogin }) {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState(''); // 문자열로 단순화
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
-        e.preventDefault(); // 폼 기본 동작 방지
+        e.preventDefault(); // 기본 폼 제출 동작 방지
+
+        // 클라이언트 측 유효성 검사
+        if (!username.trim() || !password.trim()) {
+            setErrorMessage('아이디와 비밀번호를 입력해주세요.');
+            return;
+        }
 
         try {
             const response = await fetch('http://localhost:5000/api/login', {
@@ -26,39 +32,44 @@ function Login() {
             const data = await response.json();
 
             if (response.ok) {
-                // 로그인 성공 시 홈 화면으로 이동///////*수정
+                // 로그인 성공 처리
                 alert('Login successful!');
-                navigate('/');
+                onLogin(username); // 부모 컴포넌트에 로그인 상태 전달
+                navigate('/'); // 홈 화면으로 이동
             } else {
-                // 로그인 실패 메시지 출력
-                setErrorMessage(data.error || 'Login failed. Please try again.');
+                // 서버가 반환한 에러 메시지 출력
+                setErrorMessage(data.error || '로그인 실패. 다시 시도해주세요.');
             }
         } catch (error) {
-            console.error('Login error:', error);
-            setErrorMessage('An unexpected error occurred. Please try again later.');
+            console.error('로그인 에러:', error);
+            setErrorMessage('예기치 않은 오류가 발생했습니다. 다시 시도해주세요.');
         }
     };
 
     return (
         <div className="login">
-            <h1>Login</h1>
-            <form onSubmit={handleLogin}>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button type="submit">Login</button>
-            </form>
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <p>Don't have an account? <Link to="/signup">Sign up here</Link></p>
+            <div className="login-container">
+                <h1>로그인</h1>
+                <form onSubmit={handleLogin}>
+                    <input
+                        type="text"
+                        placeholder="아이디"
+                        value={username}
+                        onChange={(e) => { setUsername(e.target.value); setErrorMessage(''); }}
+                        className={errorMessage ? 'error' : ''}
+                    />
+                    <input
+                        type="password"
+                        placeholder="비밀번호"
+                        value={password}
+                        onChange={(e) => { setPassword(e.target.value); setErrorMessage(''); }}
+                        className={errorMessage ? 'error' : ''}
+                    />
+                    <button type="submit">로그인</button>
+                </form>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
+                <p>계정이 없으신가요? <Link to="/signup">회원가입하기</Link></p>
+            </div>
         </div>
     );
 }
