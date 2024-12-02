@@ -7,6 +7,7 @@
 // import FireInformation from './components/FireInformation';
 // import Report from './components/Report';
 // import Feedback from './components/Feedback';
+// import Logout from './components/Logout';
 
 // function App() {
 //     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -46,12 +47,17 @@
 //         return true;
 //     };
 
+//     const handleLogout = () => {
+//          setIsLoggedIn(false); // 로그인 상태 초기화
+//     };
+
 //     return (
 //         <Router>
 //             <Routes>
 //                 <Route path="/" element={<Dashboard isLoggedIn={isLoggedIn} />} />
 //                 <Route path="/login" element={<Login onLogin={handleLogin} users={users} />} />
 //                 <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
+//                 <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
 //                 <Route path="/fireinformation" element={isLoggedIn ? <FireInformation /> : <Navigate to="/login" />} />
 //                 <Route path="/report" element={isLoggedIn ? <Report /> : <Navigate to="/login" />} />
 //                 <Route path="/feedback" element={isLoggedIn ? <Feedback /> : <Navigate to="/login" />} />
@@ -62,7 +68,7 @@
 
 // export default App;
 
-
+/* 로그인 상태를 확인하지 않고 직접 페이지로 이동 가능하게 수정 */
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
@@ -71,6 +77,7 @@ import Signup from './components/Signup';
 import FireInformation from './components/FireInformation';
 import Report from './components/Report';
 import Feedback from './components/Feedback';
+import Logout from './components/Logout';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -110,12 +117,17 @@ function App() {
         return true;
     };
 
+    const handleLogout = () => {
+            setIsLoggedIn(false); // 로그인 상태 초기화
+    };
+
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<Dashboard isLoggedIn={isLoggedIn} />} />
                 <Route path="/login" element={<Login onLogin={handleLogin} users={users} />} />
                 <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
+                <Route path="/logout" element={<Logout onLogout={handleLogout} users={users} />} />
                 
                 {/* 로그인 상태를 확인하지 않고 직접 페이지로 이동 가능하게 수정 */}
                 <Route path="/fireinformation" element={<FireInformation />} />

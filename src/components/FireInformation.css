@@ -8,15 +8,6 @@
     height: 100vh;
 }
 
-/* 사이드바 스타일 */
-.sidebar {
-    width: 200px;
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
 /* 메인 콘텐츠 스타일 */
 .fire-info-container {
     display: flex;
