@@ -4,15 +4,20 @@ const FeedbackController = express.Router();
 
 FeedbackController.get('/feedbackinformation', async (req, res) => {
   try {
-    // 예측 및 데이터 저장 서비스 호출
     const prediction = await FeedbackService.predictFireAnalysisAndSave();
+    const fireInformation = await FeedbackService.UserFireInformation();
 
-    // 예측 결과를 응답으로 반환
-    res.status(200).json({ success: true, data: prediction });
+		console.log('Prediction:', prediction);
+   console.log('Fire Information:', fireInformation);
+ 
+    // data1로 감싸지 않고 데이터를 바로 반환
+    res.status(200).json({ 
+      success: true, 
+      prediction: prediction, 
+      fireInformation: fireInformation
+    });
   } catch (error) {
     console.error('Error in FeedbackController:', error);
-
-    // 에러 응답 반환
     res.status(500).json({ 
       success: false, 
       error: '서버에서 예측을 처리하지 못했습니다.' 

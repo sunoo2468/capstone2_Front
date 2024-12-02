@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
+import { useNavigate } from 'react-router-dom'; // 추가
 import './FireInformation.css';
 
 const locations = {
@@ -17,6 +18,8 @@ const locations = {
 };
 
 function FireInformation() {
+	const navigate = useNavigate(); // useNavigate 훅 생성
+	
   const [fireData, setFireData] = useState({
     fire_date: '',
     fire_time: '',
@@ -106,6 +109,7 @@ function FireInformation() {
 	
 			if (response.ok) {
 				alert('데이터가 성공적으로 저장되었습니다!');
+				navigate('/feedbackinformation'); // 성공 시 페이지 이동
 			} else {
 				alert(`저장 실패: ${responseData.message}`);
 			}

@@ -3,6 +3,31 @@
 // DB와 서버의 소통 - Feedback Repository
 const pool = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/pgConnect.js'); // PostgreSQL 연결
 
+const FireInformation = async () => {
+  const query = `
+    SELECT *
+    FROM fire_incident 
+    ORDER BY id DESC 
+    LIMIT 1
+  `;
+  try {
+    const result = await pool.query(query);
+
+    if (result.rows.length === 0) {
+      console.error('No data found in the database.');
+      return null; // 데이터가 없을 경우 null 반환
+    }
+
+    console.log('Latest fire incident data:', result.rows[0]); // 로그 추가
+    return result.rows[0];
+  } catch (error) {
+    console.error('Database query error:', error.message);
+    throw error; // 에러를 호출자에게 전달
+  }
+};
+
+
+
 // 최신 데이터 가져오기
 const getLatestInput = async () => {
   const query = `
@@ -48,6 +73,7 @@ const savePredictionResult = async (data) => {
   }
 };
 module.exports = {
+	FireInformation,
   getLatestInput,
   savePredictionResult
 };
