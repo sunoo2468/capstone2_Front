@@ -6,7 +6,8 @@ var fs = require('fs');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var cors = require("cors");
-var pool = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/pgConnect.js'); // PostgreSQL 연결
+var pool = require('./pgConnect.js'); // PostgreSQL 연결
+
 
 var app = express();
 
@@ -20,10 +21,11 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-var loginRouter = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/routers/LoginRouters.js'); // 파일 경로 정확히 확인
-var signupRouter = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/routers/SignupRouters.js'); // 파일 경로 정확히 확인
-var FireinformationRouter = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/routers/FireInformationRouters.js'); // 파일 경로 정확히 확인
-var FeedbackRouter = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/routers/FeedbackRouters.js'); // 파일 경로 정확히 확인
+var loginRouter = require('./routers/LoginRouters.js'); // 상대 경로
+var signupRouter = require('./routers/SignupRouters.js'); // 상대 경로
+var FireinformationRouter = require('./routers/FireInformationRouters.js'); // 상대 경로
+var FeedbackRouter = require('./routers/FeedbackRouters.js'); // 상대 경로
+
 
 // // React 빌드 파일 제공 코드 주석 처리 (빌드 안 했으므로 필요 없음)
 // app.use(express.static(path.join(__dirname, 'finalcap2', 'build')));

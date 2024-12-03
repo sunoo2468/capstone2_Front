@@ -1,6 +1,6 @@
 var bcrypt = require('bcrypt');
-var loginRepository = require("/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/repositories/loginRepositories.js"); // 사용자 데이터 저장하는 repository
-var pool = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/pgConnect.js'); // PostgreSQL 연결
+var loginRepository = require("../repositories/loginRepositories.js"); // 사용자 데이터 저장하는 repository
+var pgConnect = require('../pgConnect');
 // 로그인
 async function login(userData) {
     const { user_id, password } = userData;

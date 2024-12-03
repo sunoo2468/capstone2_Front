@@ -1,7 +1,7 @@
 //DB와 server의 소통 
 //login
 
-const pool = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/pgConnect.js'); // PostgreSQL 연결
+const pool = require('../pgConnect.js'); // PostgreSQL 연결
 const bcrypt = require('bcrypt');
 
 /**

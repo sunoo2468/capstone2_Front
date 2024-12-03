@@ -5,7 +5,7 @@ import sys
 import json
 
 # 1. 학습된 모델 로드
-model_file_path = '/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/firefighters_vehicle_model.pkl'  # 학습된 모델 파일 경로
+model_file_path = '../server/firefighters_vehicle_model.pkl'  # 학습된 모델 파일 경로
 model = joblib.load(model_file_path)
 
 # 2. 예측 함수 정의

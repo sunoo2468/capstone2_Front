@@ -1,5 +1,6 @@
 var express = require('express');
-var FeedbackService = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/services/FeedbackService.js'); // 피드백 서비스
+var FeedbackService = require('../services/FeedbackService.js'); // 피드백 서비스
+
 const FeedbackController = express.Router();
 
 FeedbackController.get('/feedbackinformation', async (req, res) => {

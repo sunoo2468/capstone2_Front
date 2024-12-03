@@ -1,9 +1,10 @@
 const axios = require('axios');
 const xlsx = require('xlsx');
-const pool = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/pgConnect.js'); // PostgreSQL 연결 설정
+const pool = require('../pgConnect.js'); // PostgreSQL 연결
 
 // 엑셀 파일 경로
-const excelFilePath = '/Users/oseli/Desktop/캡스톤 2/기상청41_단기예보 조회서비스_오픈API활용가이드_(240715)/지역정보_최종.xlsx';
+const excelFilePath = '../지역정보_최종.xlsx';
+
 const workbook = xlsx.readFile(excelFilePath);
 const sheet = workbook.Sheets[workbook.SheetNames[0]];
 const data = xlsx.utils.sheet_to_json(sheet);
@@ -71,8 +72,18 @@ async function getWeatherInfo(city, district, dateInput, timeInput) {
             weatherCode = 7;
         }
     });
+		const weatherDescription = {
+      1: '맑음',
+      2: '구름많음',
+      3: '흐림',
+      4: '비',
+      5: '눈',
+      6: '습함',
+      7: '바람'
+    }[weatherCode] || '알 수 없음';
 
-		console.log('날씨 코드 최종 값:', weatherCode); // 최종 weatherCode 값 출력
+
+		console.log('날씨 코드 최종 값:', weatherDescription); // 최종 weatherCode 값 출력
     return weatherCode; // 날씨 정보 반환
 } catch (error) {
     console.error('날씨 정보 가져오기 실패:', error.message, {

@@ -1,7 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const pool = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/pgConnect.js'); // PostgreSQL 연결
+const pool = require('../pgConnect.js'); // PostgreSQL 연결
 const SignupService = require('../services/SignupService.js'); // 회원가입 로직 분리
+
 
 const Singuprouter = express.Router(); // Express 라우터 초기화
 

@@ -1,7 +1,7 @@
 var express = require('express');
 var bcrypt  = require ('bcrypt');
-var pool = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/pgConnect.js'); // PostgreSQL 연결 설정
-const { findUserById, verifyPassword } = require('/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/repositories/loginRepositories.js');
+var pgConnect = require('../pgConnect');
+const { findUserById, verifyPassword } = require('../repositories/loginRepositories.js');
 const LoginController = express.Router();
 
 // 사용자 로그인 처리

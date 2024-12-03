@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt')
-var signupRepository =require("/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/server/repositories/singupRepositories.js");  // 사용자 데이터 저장하는 repository
+var signupRepository =require("../repositories/singupRepositories.js");  // 사용자 데이터 저장하는 repository
 
 // 회원가입
 async function signUp(userData) {

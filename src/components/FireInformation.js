@@ -66,7 +66,7 @@ function FireInformation() {
     }
   };
 
-  const handleSubmit = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log(fireData);  // handleSubmit 함수 내에서 상태 값 확인
 	
@@ -79,29 +79,21 @@ function FireInformation() {
 			return;
 		}
 	
-		// 데이터 변환 (예시: trafficCondition, fireType, fireSize)
-		const trafficMapping = { "여유": 0, "보통": 1, "혼잡": 2, "매우혼잡": 3 };
-		const fireTypeMapping = { "산업용": 0, "차량": 1, "산불": 2, "그 외": 3 };
-		const fireSizeMapping = { "소": 0, "중": 1, "대": 2, "특대": 3 };
-	
+		// 데이터 변환 로직 제거 (사용자 입력값 그대로 전송)
 		const transformedData = {
 			...fireData,
 			fire_date: fireData.fire_date.replace(/-/g, ''),  // YYYY-MM-DD -> YYYYMMDD 변환
 			fire_time: fireData.fire_time.replace(':', ''), // HH:MM -> HHMM 변환
-			city: fireData.city,  // city 추가
-			district: fireData.district, // district 추가
-			traffic_condition: trafficMapping[fireData.traffic_condition] ?? null,
-			fire_type: fireTypeMapping[fireData.fire_type] ?? null,
-			fire_size: fireSizeMapping[fireData.fire_size] ?? null,  // 일관되게 fire_size 사용
+			// city, district, traffic_condition, fire_type, fire_size 그대로 사용
 		};
 	
 		try {
 			const response = await fetch('http://localhost:5000/api/fireinformation', {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify(transformedData) // 변환된 데이터를 서버로 전송
+				body: JSON.stringify(transformedData), // 사용자 입력값 그대로 서버로 전송
 			});
 	
 			const responseData = await response.json();
@@ -117,6 +109,7 @@ function FireInformation() {
 			alert(`서버 오류: ${error.message}`);
 		}
 	};
+	
 	
 	
   return (
