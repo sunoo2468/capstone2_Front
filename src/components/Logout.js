@@ -7,7 +7,7 @@ function Logout({ onLogout }) {
     const location = useLocation();
 
     const handleLogout = () => {
-        onLogout(); // 로그인 상태 업데이트
+        onLogout(); // 로그인 상태 초기화
         navigate('/'); // Dashboard로 이동
     };
 

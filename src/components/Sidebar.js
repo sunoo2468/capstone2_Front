@@ -1,34 +1,41 @@
-import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import './Sidebar.css';
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSidebar } from "./SidebarContext";
+import "./Sidebar.css";
 
 function Sidebar() {
     const navigate = useNavigate();
     const location = useLocation();
+    const { showPredictResult, resetSidebar } = useSidebar(); // Sidebar 상태 관리
 
     const handleLogoutClick = () => {
-        navigate('/logout', { state: { from: location.pathname } }); // 현재 경로를 state로 전달
+        resetSidebar(); // PredictResult 상태 초기화
+        navigate("/logout", { state: { from: location.pathname } }); // 로그아웃 후 리디렉션
     };
+
+    const menuItems = [
+        { path: "/", label: "Dashboard" },
+        { path: "/fireinformation", label: "Fire Information" },
+        { path: "/predictresult", label: "Predict Result", condition: showPredictResult }, // 조건부 렌더링
+        { path: "/report", label: "Report" },
+        { path: "/feedback", label: "Feedback" },
+    ];
 
     return (
         <nav className="sidebar">
             <ul>
-                <li className={location.pathname === "/" ? "active" : ""}>
-                    <Link to="/">Dashboard</Link>
-                </li>
-                <li className={location.pathname === "/fireinformation" ? "active" : ""}>
-                    <Link to="/fireinformation">Fire Information</Link>
-                </li>
-                <li className={location.pathname === "/report" ? "active" : ""}>
-                    <Link to="/report">Report</Link>
-                </li>
-                <li className={location.pathname === "/feedback" ? "active" : ""}>
-                    <Link to="/feedback">Feedback</Link>
-                </li>
-                <li className={location.pathname === "/logout" ? "active" : ""}>
-                        <button onClick={handleLogoutClick} className="logout-button">
-                            Logout
-                        </button>
+                {menuItems.map(
+                    ({ path, label, condition = true }) =>
+                        condition && (
+                            <li key={path} className={location.pathname === path ? "active" : ""}>
+                                <Link to={path}>{label}</Link>
+                            </li>
+                        )
+                )}
+                <li>
+                    <button onClick={handleLogoutClick} className="logout-button">
+                        Logout
+                    </button>
                 </li>
             </ul>
         </nav>

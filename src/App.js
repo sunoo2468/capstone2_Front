@@ -1,10 +1,12 @@
 // // src/App.js
 // import React, { useState } from 'react';
 // import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+// import { SidebarProvider } from './components/SidebarContext';
 // import Dashboard from './components/Dashboard';
 // import Login from './components/Login';
 // import Signup from './components/Signup';
 // import FireInformation from './components/FireInformation';
+// import PredictResult from './components/PredictResult';
 // import Report from './components/Report';
 // import Feedback from './components/Feedback';
 // import Logout from './components/Logout';
@@ -52,17 +54,23 @@
 //     };
 
 //     return (
-//         <Router>
-//             <Routes>
-//                 <Route path="/" element={<Dashboard isLoggedIn={isLoggedIn} />} />
-//                 <Route path="/login" element={<Login onLogin={handleLogin} users={users} />} />
-//                 <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
-//                 <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
-//                 <Route path="/fireinformation" element={isLoggedIn ? <FireInformation /> : <Navigate to="/login" />} />
-//                 <Route path="/report" element={isLoggedIn ? <Report /> : <Navigate to="/login" />} />
-//                 <Route path="/feedback" element={isLoggedIn ? <Feedback /> : <Navigate to="/login" />} />
-//             </Routes>
-//         </Router>
+//         <SidebarProvider>
+//             <Router>
+//                 <Routes>
+//                     <Route path="/" element={<Dashboard isLoggedIn={isLoggedIn} />} />
+//                     <Route path="/login" element={<Login onLogin={handleLogin} users={users} />} />
+//                     <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
+//                     <Route path="/logout" element={<Logout onLogout={handleLogout} users={users} />} />
+                    
+//                     {/* 로그인 상태를 확인하지 않고 직접 페이지로 이동 가능하게 수정 */}
+//                     <Route path="/fireinformation" element={<FireInformation />} />
+//                     <Route path="/predictResult" element={<PredictResult />} />
+//                     <Route path="/report" element={<Report />} />
+//                     <Route path="/feedback" element={<Feedback />} />
+//                     <Route path="*" element={<Navigate to="/" />} /> {/* 알 수 없는 경로 리디렉션 */}
+//                 </Routes>
+//             </Router>
+//         </SidebarProvider>
 //     );
 // }
 
@@ -70,11 +78,13 @@
 
 /* 로그인 상태를 확인하지 않고 직접 페이지로 이동 가능하게 수정 */
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { SidebarProvider } from './components/SidebarContext';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import FireInformation from './components/FireInformation';
+import PredictResult from './components/PredictResult';
 import Report from './components/Report';
 import Feedback from './components/Feedback';
 import Logout from './components/Logout';
@@ -122,19 +132,23 @@ function App() {
     };
 
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Dashboard isLoggedIn={isLoggedIn} />} />
-                <Route path="/login" element={<Login onLogin={handleLogin} users={users} />} />
-                <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
-                <Route path="/logout" element={<Logout onLogout={handleLogout} users={users} />} />
-                
-                {/* 로그인 상태를 확인하지 않고 직접 페이지로 이동 가능하게 수정 */}
-                <Route path="/fireinformation" element={<FireInformation />} />
-                <Route path="/report" element={<Report />} />
-                <Route path="/feedback" element={<Feedback />} />
-            </Routes>
-        </Router>
+        <SidebarProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Dashboard isLoggedIn={isLoggedIn} />} />
+                    <Route path="/login" element={<Login onLogin={handleLogin} users={users} />} />
+                    <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
+                    <Route path="/logout" element={<Logout onLogout={handleLogout} users={users} />} />
+                    
+                    {/* 로그인 상태를 확인하지 않고 직접 페이지로 이동 가능하게 수정 */}
+                    <Route path="/fireinformation" element={<FireInformation />} />
+                    <Route path="/predictResult" element={<PredictResult />} />
+                    <Route path="/report" element={<Report />} />
+                    <Route path="/feedback" element={<Feedback />} />
+                    <Route path="*" element={<Navigate to="/" />} /> {/* 알 수 없는 경로 리디렉션 */}
+                </Routes>
+            </Router>
+        </SidebarProvider>
     );
 }
 
