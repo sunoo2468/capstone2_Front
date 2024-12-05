@@ -1,13 +1,15 @@
 // src/App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { SidebarProvider } from './components/SidebarContext';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import FireInformation from './components/FireInformation';
 import Report from './components/Report';
 import Feedback from './components/Feedback';
-import Feedbackinformation from './components/Feedbackinformation';
+import PredicResult from './components/PredicResult';
+import Logout from './components/Logout';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,19 +49,25 @@ function App() {
         setUsers([...users, { username: username.trim(), password: password.trim() }]);
         return true;
     };
+		const handleLogout = () => {
+			         setIsLoggedIn(false); // 로그인 상태 초기화
+			    };
 
     return (
+			<SidebarProvider>
         <Router>
             <Routes>
                 <Route path="/" element={<Dashboard isLoggedIn={isLoggedIn} />} />
                 <Route path="/login" element={<Login onLogin={handleLogin} users={users} />} />
                 <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
                 <Route path="/fireinformation" element={isLoggedIn ? <FireInformation /> : <Navigate to="/login" />} />
-								<Route path="/feedbackinformation" element={isLoggedIn ? <Feedbackinformation /> : <Navigate to="/login" />} />
+								<Route path="/predicResult" element={isLoggedIn ? <PredicResult /> : <Navigate to="/login" />} />
                 <Route path="/report" element={isLoggedIn ? <Report /> : <Navigate to="/login" />} />
                 <Route path="/feedback" element={isLoggedIn ? <Feedback /> : <Navigate to="/login" />} />
+								<Route path="/logout" element={<Logout onLogout={handleLogout} users={users} />} />
             </Routes>
         </Router>
+				</SidebarProvider>
     );
 }
 

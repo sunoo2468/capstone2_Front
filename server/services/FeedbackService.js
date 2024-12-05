@@ -1,7 +1,7 @@
 
 // services/FeedbackService.js
 var { spawn } = require('child_process');
-var { getLatestInput, savePredictionResult, FireInformation } = require('../repositories/FeedbackRepositories.js');  // 경로 수정
+var { getLatestInput, savePredictionResult, FireInformation } = require('../repositories/PredicResultRepositories.js');  // 경로 수정
 var pool = require('../pgConnect.js'); // PostgreSQL 연결
 
 // Python 모델 실행 함수
