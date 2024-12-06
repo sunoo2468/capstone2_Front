@@ -44,58 +44,51 @@ async function getWeatherInfo(city, district, dateInput, timeInput) {
   // API 요청 쿼리 파라미터 설정
   const queryParams = `?serviceKey=${encodeURIComponent(serviceKey)}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${dateInput}&base_time=${timeInput}&nx=${nx}&ny=${ny}`;
 
-  try {
+	try {
     const response = await axios.get(apiUrl + queryParams);
     const items = response.data.response.body.items.item;
-    let weatherCode = 0; // 기본값: 알 수 없음
+
+    let weatherConditions = new Set(); // 중복 제거를 위해 Set 사용
 
     items.forEach(item => {
         if (item.category === 'PTY') { // 강수 형태
-            weatherCode = {
-                '0': 1, // 맑음
-                '1': 4, // 비
-                '2': 4, // 비/눈
-                '3': 5, // 눈
-                '5': 4, // 이슬비
-                '6': 5, // 빗방울눈날림
-                '7': 5  // 눈날림
-            }[item.obsrValue] || weatherCode;
-        } else if (item.category === 'SKY' && weatherCode === 1) { // 하늘 상태 (맑음일 경우만 업데이트)
-            weatherCode = {
-                '1': 1, // 맑음
-                '3': 2, // 구름많음
-                '4': 3  // 흐림
-            }[item.obsrValue] || weatherCode;
+            const ptyMapping = {
+                '0': '맑음',
+                '1': '비',
+                '2': '비/눈',
+                '3': '눈',
+                '5': '이슬비',
+                '6': '빗방울/눈날림',
+                '7': '눈날림',
+            };
+            if (ptyMapping[item.obsrValue]) {
+                weatherConditions.add(ptyMapping[item.obsrValue]);
+            }
+        } else if (item.category === 'SKY') { // 하늘 상태
+            const skyMapping = {
+                '1': '맑음',
+                '3': '구름많음',
+                '4': '흐림',
+            };
+            if (skyMapping[item.obsrValue]) {
+                weatherConditions.add(skyMapping[item.obsrValue]);
+            }
         } else if (item.category === 'REH' && item.obsrValue >= 80) { // 습함
-            weatherCode = 6;
+            weatherConditions.add('습함');
         } else if (item.category === 'WSD' && item.obsrValue >= 4) { // 바람
-            weatherCode = 7;
+            weatherConditions.add('바람');
         }
     });
-		const weatherDescription = {
-      1: '맑음',
-      2: '구름많음',
-      3: '흐림',
-      4: '비',
-      5: '눈',
-      6: '습함',
-      7: '바람'
-    }[weatherCode] || '알 수 없음';
 
+    const weatherDescription = Array.from(weatherConditions).join(', ');
+    console.log('날씨 출력 결과:', weatherDescription); // 최종 결과 출력
 
-		console.log('날씨 코드 최종 값:', weatherDescription); // 최종 weatherCode 값 출력
-    return weatherCode; // 날씨 정보 반환
+    return weatherDescription; // 문자열로 된 날씨 조건 반환
 } catch (error) {
-    console.error('날씨 정보 가져오기 실패:', error.message, {
-        nx,
-        ny,
-        dateInput,
-        timeInput,
-        city,
-        district
-    });
+    console.error('날씨 정보 가져오기 실패:', error.message);
     throw new Error('날씨 정보를 가져오는 데 실패했습니다.');
-}}
+}
+}
 
 
 

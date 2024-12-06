@@ -1,6 +1,6 @@
-// src/components/Dashboard.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import QuickActions from './QuickActions';
 import './Dashboard.css';
 
 function Dashboard({ isLoggedIn }) {
@@ -33,21 +33,14 @@ function Dashboard({ isLoggedIn }) {
 
             {/* 대시보드 메인 콘텐츠 */}
             <div className="dashboard-content">
-                {/* 왼쪽 패널: 주요 통계 */}
-                <aside className="metrics-panel">
-                    <h3>실시간 통계</h3>
-                    <p>현재 화재 건수: 12</p>
-                    <p>투입된 소방대원 수: 54</p>
-                    <p>평균 대응 시간: 7분</p>
-                    <button onClick={() => navigate('/statistics')}>자세한 통계 보기</button>
-                </aside>
-
-                {/* 가운데 패널: 지도와 라이브 리포트 */}
-                <section className="main-panel">
-                    <div className="map-container">
-                        <h3>인터랙티브 지도</h3>
-                        {/* 지도 자리 */}
-                        <div className="map-placeholder">[지도]</div>
+                {/* 왼쪽 패널: 실시간 통계와 리포트 */}
+                <aside className="left-panel">
+                    <div className="metrics-panel">
+                        <h3>실시간 통계</h3>
+                        <p>현재 화재 건수: 12</p>
+                        <p>투입된 소방대원 수: 54</p>
+                        <p>평균 대응 시간: 7분</p>
+                        <button onClick={() => navigate('/statistics')}>자세한 통계 보기</button>
                     </div>
                     <div className="live-reports">
                         <h3>실시간 리포트</h3>
@@ -55,14 +48,20 @@ function Dashboard({ isLoggedIn }) {
                         <p>리포트 #2: 주거 지역 화재 경보</p>
                         <button onClick={() => navigate('/reports')}>모든 리포트 보기</button>
                     </div>
+                </aside>
+
+                {/* 중앙 패널: QuickActions */}
+                <section className="center-panel">
+                    <QuickActions />
+                    
                 </section>
 
-                {/* 오른쪽 패널: 빠른 링크 */}
-                <aside className="quick-links-panel">
-                    <h3>빠른 액션</h3>
-                    <button onClick={() => navigate('/report-fire')}>화재 신고하기</button>
-                    <button onClick={() => navigate('/emergency-contacts')}>긴급 연락처</button>
-                    <button onClick={() => navigate('/guidelines')}>화재 안전 지침</button>
+                {/* 오른쪽 패널: 인터랙티브 지도 */}
+                <aside className="right-panel">
+                    <div className="map-container">
+                        <h3>인터랙티브 지도</h3>
+                        <div className="map-placeholder">[지도]</div>
+                    </div>
                 </aside>
             </div>
         </div>

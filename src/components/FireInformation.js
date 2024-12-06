@@ -101,7 +101,7 @@ function FireInformation() {
 	
 			if (response.ok) {
 				alert('데이터가 성공적으로 저장되었습니다!');
-				navigate('/feedbackinformation'); // 성공 시 페이지 이동
+				navigate('/predicresult'); // 성공 시 페이지 이동
 			} else {
 				alert(`저장 실패: ${responseData.message}`);
 			}

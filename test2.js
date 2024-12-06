@@ -7,7 +7,7 @@ const apiUrl = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltr
 const serviceKey = 'DSQRNtEytEgIHvSIiIc0BVZP6fHjNZvzWzJO7dZqPVURPfN0TLjYV89A6Ht4+Iv905FtGseBc/5Ji7sYOEcXcw=='; 
 
 // 엑셀 파일 경로
-var excelFilePath = '/Users/oseli/Desktop/캡스톤 2/기상청41_단기예보 조회서비스_오픈API활용가이드_(240715)/지역정보_최종.xlsx2';
+var excelFilePath = '/Users/oseli/Desktop/캡스톤 2/코드/finalcap2/지역정보_최종.xlsx';
 
 // 엑셀 파일 읽기
 var workbook = xlsx.readFile(excelFilePath);
@@ -55,37 +55,54 @@ rl.question('날짜를 입력하세요 (예: 20241111): ', (dateInput) => {
           
           // API 요청 보내기
           axios.get(apiUrl + queryParams)
-            .then(response => {
-              const items = response.data.response.body.items.item;
- 
-              let weatherDescription = "간단한 날씨 정보:\n";
-              let precipitation = "맑음"; // 기본값을 맑음으로 설정
+  .then(response => {
+    const items = response.data.response.body.items.item;
 
-              // PTY와 SKY 정보를 바탕으로 간단한 날씨 정보 해석
-              items.forEach(item => {
-                if (item.category === 'PTY') { // 강수 형태
-                  precipitation = {
-                    '0': '맑음',  // 비 없음
-                    '1': '비',
-                    '2': '비/눈',
-                    '3': '눈',
-                    '5': '이슬비'
-                  }[item.obsrValue] || '알 수 없음';
-                } else if (item.category === 'SKY' && precipitation === '맑음') {
-                  precipitation = {
-                    '1': '맑음',
-                    '3': '구름 많음',
-                    '4': '흐림'
-                  }[item.obsrValue] || precipitation;
-                }
-              });
+    let weatherConditions = new Set(); // 중복 방지를 위한 Set 사용
 
-              weatherDescription += `현재 날씨: ${precipitation}\n`;
-              console.log(weatherDescription);
-            })
-            .catch(error => {
-              console.error('Error:', error);
-            });
+    // PTY, SKY, REH, WSD 정보를 바탕으로 날씨 조건 해석
+    items.forEach(item => {
+      if (item.category === 'PTY') { // 강수 형태
+        const ptyMapping = {
+          '0': '맑음',  // 비 없음
+          '1': '폭우 비',
+          '2': '폭우 비', // 비/눈도 폭우 비로 처리
+          '3': '눈',
+          '5': '폭우 비' // 이슬비
+        };
+        if (ptyMapping[item.obsrValue]) {
+          weatherConditions.add(ptyMapping[item.obsrValue]);
+        }
+      } else if (item.category === 'SKY') { // 하늘 상태
+        const skyMapping = {
+          '1': '맑음',
+          '3': '구름 많음',
+          '4': '흐림'
+        };
+        if (skyMapping[item.obsrValue]) {
+          weatherConditions.add(skyMapping[item.obsrValue]);
+        }
+      } else if (item.category === 'REH' && item.obsrValue >= 80) { // 습함
+        weatherConditions.add('습함');
+      } else if (item.category === 'WSD' && item.obsrValue >= 4) { // 바람
+        weatherConditions.add('바람');
+      }
+    });
+
+    // 요청된 7개 문자열의 순서를 보장
+    const requiredOrder = ['폭우 비', '습함', '흐림', '눈', '맑음', '바람'];
+    const orderedWeatherConditions = requiredOrder.filter(condition =>
+      weatherConditions.has(condition)
+    );
+
+    // 최종 날씨 정보 출력
+    const weatherDescription = `현재 날씨: ${orderedWeatherConditions.join(', ')}`;
+    console.log(weatherDescription);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
         } else {
           console.log('해당 도시와 지역의 좌표를 찾을 수 없습니다.');
         }

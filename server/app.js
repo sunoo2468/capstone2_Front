@@ -26,6 +26,7 @@ var signupRouter = require('./routers/SignupRouters.js'); // 상대 경로
 var FireinformationRouter = require('./routers/FireInformationRouters.js'); // 상대 경로
 var PredicResultRouter = require('./routers/PredicResultRouters.js'); // 상대 경로
 var ReportRouter = require('./routers/ReportRouters.js'); // 상대 경로
+var ModifyRouter = require('./routers/ModifyRouters.js')
 
 
 // // React 빌드 파일 제공 코드 주석 처리 (빌드 안 했으므로 필요 없음)
@@ -42,6 +43,8 @@ app.use('/api', signupRouter);
 app.use('/api', FireinformationRouter);
 app.use('/api', PredicResultRouter);
 app.use('/api', ReportRouter);
+app.use('/api', ModifyRouter);
+
 // server.js
 app.use((req, res, next) => {
   if (req.url.includes('%08')) {
