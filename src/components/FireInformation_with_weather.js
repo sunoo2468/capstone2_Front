@@ -1,4 +1,3 @@
-//weather 항목이 삭제된 경우
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSidebar } from './SidebarContext';
@@ -22,17 +21,18 @@ function FireInformation() {
     const navigate = useNavigate();
     const { enablePredictResult } = useSidebar();
     const [fireData, setFireData] = useState({
-        fireDate: '',
         fireTime: '',
         fireLocation: '',
         subLocation: '',
         fireType: '',
         fireSize: '',
+        weather: '',
         traffic: ''
     });
 
     const [showPictograms, setShowPictograms] = useState({
         map: false,
+        weather: false,
         traffic: false,
         fireType: false
     });
@@ -52,19 +52,18 @@ function FireInformation() {
         setFireData({ ...fireData, [name]: value });
 
         // 상태별로 픽토그램 표시 설정
-        if (name === 'traffic') {
+        if (name === 'weather') {
+            setShowPictograms({ ...showPictograms, weather: true });
+        } else if (name === 'traffic') {
             setShowPictograms({ ...showPictograms, traffic: true });
         } else if (name === 'fireType') {
             setShowPictograms({ ...showPictograms, fireType: true });
-        }
-        else if (name === 'fireSize') {
-            setShowPictograms({ ...showPictograms, fireSize: true });
         }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(`Fire reported on ${fireData.fireDate} at ${fireData.fireTime} in ${fireData.fireLocation} ${fireData.subLocation}.Fire re Fire Type: ${fireData.fireType}`);
+        alert(`Fire reported at ${fireData.fireLocation} ${fireData.subLocation}. Fire Type: ${fireData.fireType}`);
         enablePredictResult(fireData);
         navigate('/predictresult');
     };
@@ -77,11 +76,8 @@ function FireInformation() {
                 <div className="fire-form-section">
                     <h1>실시간 대응 방안</h1>
                     <form onSubmit={handleSubmit} className="fire-form">
-                        <label>화재 발생 날짜:</label>
-                        <input type="date" name="fireDate" value={fireData.fireDate} onChange={handleChange} />
-                       
                         <label>화재 발생 시간:</label>
-                        <input type="time" name="fireTime" value={fireData.fireTime} onChange={handleChange} />
+                        <input type="datetime-local" name="fireTime" value={fireData.fireTime} onChange={handleChange} />
 
                         <label>화재 위치:</label>
                         <select name="fireLocation" value={fireData.fireLocation} onChange={handleLocationChange}>
@@ -107,9 +103,21 @@ function FireInformation() {
                             </>
                         )}
 
+                        <label>날씨 상황:</label>
+                        <select name="weather" value={fireData.weather} onChange={handleChange}>
+                            <option value="">날씨 선택</option> {/* 기본 선택 옵션 추가 */}
+                            <option value="맑음">맑음</option>
+                            <option value="흐림">흐림</option>
+                            <option value="비">비</option>
+                            <option value="눈">눈</option>
+                            <option value="폭우">폭우</option>
+                            <option value="바람">바람</option>
+                            <option value="습함">습함</option>
+                        </select>
+
                         <label>혼잡도 상태:</label>
                         <select name="traffic" value={fireData.traffic} onChange={handleChange}>
-                            <option value="">혼잡도 선택</option>
+                            <option value="">혼잡도 선택</option> {/* 기본 선택 옵션 추가 */}
                             <option value="여유">여유</option>
                             <option value="보통">보통</option>
                             <option value="혼잡">혼잡</option>
@@ -118,7 +126,7 @@ function FireInformation() {
 
                         <label>화재 유형:</label>
                         <select name="fireType" value={fireData.fireType} onChange={handleChange}>
-                            <option value="">화재 유형 선택</option>
+                            <option value="">화재 유형 선택</option> {/* 기본 선택 옵션 추가 */}
                             <option value="산업용">산업용</option>
                             <option value="차량">차량</option>
                             <option value="산불">산불</option>
@@ -152,12 +160,17 @@ function FireInformation() {
                             <p>지도</p>
                         </div>
                     )}
+                    {showPictograms.weather && (
+                        <div className="pictogram weather-icon">
+                            <p>날씨</p>
+                        </div>
+                    )}
                     {showPictograms.traffic && (
                         <div className="pictogram traffic-icon">
                             <p>교통</p>
                         </div>
                     )}
-                    {showPictograms.fireSize && (
+                    {showPictograms.fireType && (
                         <div className="pictogram fire-type-icon">
                             <p>유형</p>
                             <div className="fire-icon" style={{ transform: `scale(${fireData.fireSize === '소' ? 0.5 : fireData.fireSize === '중' ? 0.7 : fireData.fireSize === '대' ? 1 : 1.2})` }}>

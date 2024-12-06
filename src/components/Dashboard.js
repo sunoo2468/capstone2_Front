@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import QuickActions from './QuickActions'; // QuickActions 컴포넌트를 가져옵니다.
+import QuickActions from './QuickActions';
 import './Dashboard.css';
 
 function Dashboard({ isLoggedIn }) {

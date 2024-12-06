@@ -19,7 +19,7 @@ function PredictResult() {
     }
 
     // 전역 상태에서 데이터를 구조 분해
-    const { fireTime, fireLocation, subLocation, fireType, fireSize, traffic } = predictResultData;
+    const { fireDate, fireTime, fireLocation, subLocation, fireType, fireSize, traffic } = predictResultData;
 
     return (
         <div className="page-container">
@@ -29,6 +29,9 @@ function PredictResult() {
                 <div className="feedback-list-container">
                     <h2>사용자 입력 정보</h2>
                     <ul className="feedback-list">
+                        <li className="feedback-item">
+                            <strong>화재 발생 날짜:</strong> {fireDate}
+                        </li>
                         <li className="feedback-item">
                             <strong>화재 발생 시간:</strong> {fireTime}
                         </li>
