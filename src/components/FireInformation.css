@@ -49,8 +49,83 @@
     color: #34495e;
 }
 
-.fire-form input[type="text"],
-.fire-form input[type="datetime-local"],
+.fire-form input[type="date"],
+.fire-form input[type="time"] {
+    font-size: 22px; /* 입력 필드 글씨 크기 확대 */
+    padding: 12px; /* 내부 여백 확대 */
+    width: 100%; /* 입력 필드 넓이 조정 */
+    margin-top: 6px;
+    border: 2px solid #ccc; /* 테두리 두께 확대 */
+    border-radius: 8px; /* 모서리를 둥글게 */
+    box-sizing: border-box;
+    background-color: #fdfdfd; /* 배경색 추가 */
+}
+
+.fire-form input[type="date"]:focus,
+.fire-form input[type="time"]:focus {
+    border-color: #5dade2; /* 포커스 시 테두리 색상 변경 */
+    outline: none; /* 기본 포커스 제거 */
+    box-shadow: 0 0 5px #5dade2; /* 포커스 시 외곽선 효과 */
+}
+
+
+/* 캘린더 및 시간 팝업 스타일 */
+.react-datepicker {
+    width: 350px !important; /* 캘린더 팝업 너비 */
+    font-size: 18px !important; /* 텍스트 크기 */
+    border-radius: 12px !important; /* 둥근 모서리 */
+    padding: 15px; /* 내부 패딩 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+/* 날짜 버튼 크기 */
+.react-datepicker__day {
+    width: 48px !important; /* 날짜 버튼 너비 */
+    height: 48px !important; /* 날짜 버튼 높이 */
+    line-height: 48px !important; /* 텍스트 정렬 */
+    font-size: 18px !important; /* 글씨 크기 */
+    border-radius: 6px; /* 둥근 테두리 */
+    margin: 4px;
+}
+
+/* 선택된 날짜 스타일 */
+.react-datepicker__day--selected {
+    background-color: #5dade2 !important; /* 선택된 날짜 배경색 */
+    color: #fff !important; /* 선택된 날짜 글씨색 */
+}
+
+/* 날짜 팝업 헤더 */
+.react-datepicker__header {
+    font-size: 20px; /* 헤더 글씨 크기 */
+    padding: 10px;
+    background-color: #eef5fa; /* 헤더 배경색 */
+    border-bottom: 1px solid #ccc;
+    border-radius: 10px 10px 0 0; /* 둥근 테두리 */
+}
+
+/* 시간 선택 팝업 */
+.react-datepicker__time-container {
+    width: 120px !important; /* 시간 선택 팝업 너비 */
+    font-size: 18px; /* 시간 글씨 크기 */
+}
+
+/* 네비게이션 버튼 */
+.react-datepicker__navigation {
+    top: 20px; /* 위치 조정 */
+    width: 44px;
+    height: 44px;
+}
+
+.react-datepicker__navigation-icon {
+    font-size: 22px; /* 버튼 크기 */
+}
+
+/* 캘린더 팝업 내부 간격 */
+.react-datepicker__month-container {
+    padding: 10px; /* 내부 간격 추가 */
+}
+
+
 .fire-form select {
     font-size: 22px; /* 입력창 글씨 크기를 확대 (기존 20px → 22px) */
     padding: 14px; /* 내부 패딩을 키워 높이를 늘림 */

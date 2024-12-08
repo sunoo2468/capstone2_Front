@@ -8,6 +8,7 @@
 // import FireInformation from './components/FireInformation';
 // import PredictResult from './components/PredictResult';
 // import Report from './components/Report';
+// import ReportContext from "./components/ReportContext";
 // import Feedback from './components/Feedback';
 // import Logout from './components/Logout';
 
@@ -66,6 +67,7 @@
 //                     <Route path="/fireinformation" element={<FireInformation />} />
 //                     <Route path="/predictResult" element={<PredictResult />} />
 //                     <Route path="/report" element={<Report />} />
+//                     <Route path="/reports/:id" element={<ReportContext />} />
 //                     <Route path="/feedback" element={<Feedback />} />
 //                     <Route path="*" element={<Navigate to="/" />} /> {/* 알 수 없는 경로 리디렉션 */}
 //                 </Routes>
@@ -86,6 +88,7 @@ import Signup from './components/Signup';
 import FireInformation from './components/FireInformation';
 import PredictResult from './components/PredictResult';
 import Report from './components/Report';
+import ReportContext from "./components/ReportContext";
 import Feedback from './components/Feedback';
 import Logout from './components/Logout';
 
@@ -144,6 +147,7 @@ function App() {
                     <Route path="/fireinformation" element={<FireInformation />} />
                     <Route path="/predictResult" element={<PredictResult />} />
                     <Route path="/report" element={<Report />} />
+                    <Route path="/reports/:id" element={<ReportContext />} />
                     <Route path="/feedback" element={<Feedback />} />
                     <Route path="*" element={<Navigate to="/" />} /> {/* 알 수 없는 경로 리디렉션 */}
                 </Routes>

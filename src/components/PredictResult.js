@@ -62,13 +62,13 @@ function PredictResult() {
                             <strong>구급차:</strong> 2
                         </li>
                         <li className="feedback-item">
-                            <strong>물:</strong> 500L
-                        </li>
-                        <li className="feedback-item">
-                            <strong>사다리:</strong> 1
+                            <strong>물탱크차:</strong> 500L
                         </li>
                         <li className="feedback-item">
                             <strong>펌프차:</strong> 1
+                        </li>
+                        <li className="feedback-item">
+                            <strong>사다리:</strong> 1
                         </li>
                     </ul>
                 </div>
