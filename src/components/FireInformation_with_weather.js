@@ -21,6 +21,7 @@ function FireInformation() {
     const navigate = useNavigate();
     const { enablePredictResult } = useSidebar();
     const [fireData, setFireData] = useState({
+        fireDate: '',
         fireTime: '',
         fireLocation: '',
         subLocation: '',
@@ -76,8 +77,11 @@ function FireInformation() {
                 <div className="fire-form-section">
                     <h1>실시간 대응 방안</h1>
                     <form onSubmit={handleSubmit} className="fire-form">
+                        <label>화재 발생 날짜:</label>
+                        <input type="date" name="fireDate" value={fireData.fireDate} onChange={handleChange} />
+
                         <label>화재 발생 시간:</label>
-                        <input type="datetime-local" name="fireTime" value={fireData.fireTime} onChange={handleChange} />
+                        <input type="time" name="fireTime" value={fireData.fireTime} onChange={handleChange} />
 
                         <label>화재 위치:</label>
                         <select name="fireLocation" value={fireData.fireLocation} onChange={handleLocationChange}>
