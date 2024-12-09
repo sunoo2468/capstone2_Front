@@ -15,6 +15,7 @@
 // function App() {
 //     const [isLoggedIn, setIsLoggedIn] = useState(false);
 //     const [users, setUsers] = useState([{ username: 'admin', password: 'password' }]);
+//     const [allReports, setAllReports] = useState([]);
 
 //     const handleLogin = (username, password) => {
 //         if (!users || !Array.isArray(users)) {
@@ -66,8 +67,9 @@
 //                     {/* 로그인 상태를 확인하지 않고 직접 페이지로 이동 가능하게 수정 */}
 //                     <Route path="/fireinformation" element={<FireInformation />} />
 //                     <Route path="/predictResult" element={<PredictResult />} />
-//                     <Route path="/report" element={<Report />} />
-//                     <Route path="/reports/:id" element={<ReportContext />} />
+//                     <Route path="/report" element={<Report allReports={allReports} />} />
+//                     <Route path="/reports/:id" element={<ReportContext allReports={allReports} setAllReports={setAllReports} />} />
+//                     <Route path="/feedback" element={<Feedback />} />
 //                     <Route path="/feedback" element={<Feedback />} />
 //                     <Route path="*" element={<Navigate to="/" />} /> {/* 알 수 없는 경로 리디렉션 */}
 //                 </Routes>
@@ -95,6 +97,7 @@ import Logout from './components/Logout';
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [users, setUsers] = useState([{ username: 'admin', password: 'password' }]);
+    const [allReports, setAllReports] = useState([]);
 
     const handleLogin = (username, password) => {
         if (!users || !Array.isArray(users)) {
@@ -146,8 +149,9 @@ function App() {
                     {/* 로그인 상태를 확인하지 않고 직접 페이지로 이동 가능하게 수정 */}
                     <Route path="/fireinformation" element={<FireInformation />} />
                     <Route path="/predictResult" element={<PredictResult />} />
-                    <Route path="/report" element={<Report />} />
                     <Route path="/reports/:id" element={<ReportContext />} />
+                    <Route path="/report" element={<Report allReports={allReports} />} />
+                    <Route path="/reports/:id" element={<ReportContext allReports={allReports} setAllReports={setAllReports} />} />
                     <Route path="/feedback" element={<Feedback />} />
                     <Route path="*" element={<Navigate to="/" />} /> {/* 알 수 없는 경로 리디렉션 */}
                 </Routes>
