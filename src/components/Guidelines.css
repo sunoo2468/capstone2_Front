@@ -1,0 +1,98 @@
+/* src/components/Guidelines.css */
+.guidelines-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background: linear-gradient(to bottom, #fff5f5, #ffe5e5);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #333;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guidelines-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.guidelines-title {
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-align: center;
+    color: #d32f2f; /* 강렬한 빨강색 */
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.guidelines-description {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 25px;
+    background-color: #ffe8e8; /* 연한 분홍 배경 */
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ffcccc;
+    font-weight: bold;
+}
+
+.guidelines-section {
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #fff, #ffe6e6);
+    border-left: 6px solid #d9534f; /* 섹션 왼쪽 강조 색상 */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+.guidelines-section:hover {
+    background: linear-gradient(135deg, #ffe6e6, #ffd9d9);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.guidelines-section h2 {
+    font-size: 1.8rem;
+    color: #c62828; /* 어두운 빨강 */
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+.guidelines-section ul {
+    list-style-type: disc;
+    padding-left: 30px;
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.guidelines-section li {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background-color: #fff7f7;
+    border-left: 4px solid #d32f2f; /* 리스트 아이템 강조 */
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.guidelines-section li:hover {
+    background-color: #ffe3e3;
+}
+
+.guidelines-footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    padding: 15px;
+    background-color: #fff2f2;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+.guidelines-footer:hover {
+    background-color: #ffe6e6;
+}

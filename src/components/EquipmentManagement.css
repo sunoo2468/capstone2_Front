@@ -1,0 +1,55 @@
+.equipment-management {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.equipment-management h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #d9534f;
+}
+
+.equipment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.equipment-table th,
+.equipment-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.equipment-table th {
+    background-color: #f4f6f9;
+    color: #555;
+    font-weight: bold;
+}
+
+.equipment-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.equipment-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.equipment-table button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.equipment-table button:hover {
+    background-color: #c9302c;
+}
