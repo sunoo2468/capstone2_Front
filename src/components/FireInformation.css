@@ -212,6 +212,7 @@
     color: #ff4500; /* 불 아이콘 색상 */
 }
 
+
 /* 반응형 조정 */
 @media (max-width: 768px) {
     .fire-info-container {
