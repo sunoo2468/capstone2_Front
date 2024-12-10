@@ -6,6 +6,7 @@
 // import TrainingSchedule from './components/TrainingSchedule';
 // import Guidelines from './components/Guidelines';
 // import EmergencyResponse from './components/EmergencyResponse';
+// import NoticePannel from './components/NoticePannel';
 // import Login from './components/Login';
 // import Signup from './components/Signup';
 // import FireInformation from './components/FireInformation';
@@ -67,6 +68,7 @@
 //                     <Route path="/schedule" element={<TrainingSchedule />} />
 //                     <Route path="/guidelines" element={<Guidelines />} />
 //                     <Route path="/response" element={<EmergencyResponse />} />
+//                     <Route path="/noticepannel" element={<NoticePannel />} />
 //                     <Route path="/login" element={<Login onLogin={handleLogin} users={users} />} />
 //                     <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
 //                     <Route path="/logout" element={<Logout onLogout={handleLogout} users={users} />} />
@@ -96,6 +98,7 @@ import EquipmentManagement from './components/EquipmentManagement';
 import TrainingSchedule from './components/TrainingSchedule';
 import Guidelines from './components/Guidelines';
 import EmergencyResponse from './components/EmergencyResponse';
+import NoticePannel from './components/NoticePannel';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import FireInformation from './components/FireInformation';
@@ -157,6 +160,7 @@ function App() {
                     <Route path="/schedule" element={<TrainingSchedule />} />
                     <Route path="/guidelines" element={<Guidelines />} />
                     <Route path="/response" element={<EmergencyResponse />} />
+                    <Route path="/noticepannel" element={<NoticePannel />} />
                     <Route path="/login" element={<Login onLogin={handleLogin} users={users} />} />
                     <Route path="/signup" element={<Signup onSignup={handleSignup} />} />
                     <Route path="/logout" element={<Logout onLogout={handleLogout} users={users} />} />

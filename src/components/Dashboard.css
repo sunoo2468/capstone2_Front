@@ -128,6 +128,36 @@
     overflow: hidden;
 }
 
+/* 실시간 통계와 리포트 섹션 스타일 */
+.metrics-panel h3, .live-reports h3 {
+    color: #d9534f; /* 강조된 타이틀 색상 */
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.metrics-panel p, .live-reports p {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    line-height: 1.6;
+}
+
+/* 버튼 스타일 */
+.metrics-panel button, .live-reports button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.metrics-panel button:hover, .live-reports button:hover {
+    background-color: #c9302c;
+}
+
 /* 중앙 패널 스타일 */
 .center-panel {
     flex: 1.5;
@@ -213,25 +243,4 @@
 .action-card p {
     font-size: 1rem; /* 설명 크기 */
     line-height: 1.4;
-}
-
-/* 오른쪽 패널 스타일 */
-.right-panel {
-    flex: 1;
-    background: #f4f6f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    height: 560px; /* 패널 높이를 화면과 조화롭게 조정 */
-}
-
-.map-placeholder {
-    height: 100%; /* 패널 크기에 맞춤 */
-    background-color: #aaa;
-    border-radius: 8px;
-    line-height: 500px; /* 줄어든 높이에 맞게 정렬 */
-    text-align: center;
-    color: #333;
-    font-size: 1.2rem;
-    font-weight: bold;
 }
