@@ -56,19 +56,19 @@ function PredictResult() {
                     <h2>예측 결과</h2>
                     <ul className="feedback-list">
                         <li className="feedback-item">
-                            <strong>소방대원:</strong> 5
+                            <strong>소방대원:</strong> 36
                         </li>
                         <li className="feedback-item">
-                            <strong>구급차:</strong> 2
+                            <strong>구급차:</strong> 5
                         </li>
                         <li className="feedback-item">
-                            <strong>물탱크차:</strong> 500L
+                            <strong>펌프트럭:</strong> 3
                         </li>
                         <li className="feedback-item">
-                            <strong>펌프차:</strong> 1
+                            <strong>물탱크차:</strong> 2
                         </li>
                         <li className="feedback-item">
-                            <strong>사다리:</strong> 1
+                            <strong>사다리차:</strong> 2
                         </li>
                     </ul>
                 </div>

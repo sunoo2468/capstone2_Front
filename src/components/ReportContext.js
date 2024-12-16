@@ -31,19 +31,22 @@ function ReportContext() {
 
     const calculateAccuracy = () => {
         const expected = {
-            fireFighter: 5,
-            ladder: 1,
-            waterTank: 500,
-            pump: 1,
+            fireFighter: 36,
+            ambulance: 5,
+            pump: 3,
+            waterTank: 2,
+            ladder: 2,
         };
 
-        let total = 4; // 총 항목 수
+        let total = 5; // 총 항목 수
         let correct = 0;
 
         if (parseInt(actualData.fireFighter) === expected.fireFighter) correct++;
-        if (parseInt(actualData.ladder) === expected.ladder) correct++;
-        if (parseInt(actualData.waterTank) === expected.waterTank) correct++;
+        if (parseInt(actualData.ambulance) === expected.ambulance) correct++;
         if (parseInt(actualData.pump) === expected.pump) correct++;
+        if (parseInt(actualData.waterTank) === expected.waterTank) correct++;
+        if (parseInt(actualData.ladder) === expected.ladder) correct++;
+        
 
         return Math.round((correct / total) * 100); // 퍼센트 계산
     };
@@ -85,10 +88,11 @@ function ReportContext() {
             <section className="section">
                 <h2>예측 데이터</h2>
                 <ul>
-                    <li>소방대원: {predictResultData.fireFighter || "5명"}</li>
-                    <li>사다리: {predictResultData.ladder || "1개"}</li>
-                    <li>물탱크: {predictResultData.waterTank || "500L"}</li>
-                    <li>펌프: {predictResultData.pump || "1대"}</li>
+                    <li>소방대원: {predictResultData.fireFighter || "36명"}</li>
+                    <li>구급차: {predictResultData.ambulance || "5대"}</li>
+                    <li>펌프트럭: {predictResultData.pump || "3대"}</li>
+                    <li>물탱크차: {predictResultData.waterTank || "2대"}</li>
+                    <li>사다리차: {predictResultData.ladder || "2개"}</li>
                 </ul>
             </section>
 
@@ -99,9 +103,10 @@ function ReportContext() {
                         <h2>실제 데이터</h2>
                         <ul>
                             <li>소방대원: {actualData.fireFighter || "N/A"}</li>
-                            <li>사다리: {actualData.ladder || "N/A"}</li>
+                            <li>구급차: {actualData.ambulance || "N/A"}</li>
+                            <li>펌프트럭: {actualData.pump || "N/A"}</li>
                             <li>물탱크: {actualData.waterTank || "N/A"}</li>
-                            <li>펌프: {actualData.pump || "N/A"}</li>
+                            <li>사다리차: {actualData.ladder || "N/A"}</li>
                         </ul>
                     </section>
 
@@ -134,11 +139,20 @@ function ReportContext() {
                             />
                         </label>
                         <label>
-                            실제 사다리:
+                            실제 구급차:
                             <input
                                 type="text"
-                                name="ladder"
-                                value={actualData.ladder}
+                                name="ambulance"
+                                value={actualData.ambulance}
+                                onChange={handleActualDataChange}
+                            />
+                        </label>
+                        <label>
+                            실제 펌프트럭:
+                            <input
+                                type="text"
+                                name="pump"
+                                value={actualData.pump}
                                 onChange={handleActualDataChange}
                             />
                         </label>
@@ -152,11 +166,11 @@ function ReportContext() {
                             />
                         </label>
                         <label>
-                            실제 펌프:
+                            실제 사다리차:
                             <input
                                 type="text"
-                                name="pump"
-                                value={actualData.pump}
+                                name="ladder"
+                                value={actualData.ladder}
                                 onChange={handleActualDataChange}
                             />
                         </label>
