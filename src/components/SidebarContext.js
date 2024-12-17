@@ -4,18 +4,17 @@ const SidebarContext = createContext();
 
 export const SidebarProvider = ({ children }) => {
     const [showPredictResult, setShowPredictResult] = useState(false);
-    const [predictResultData, setPredictResultData] = useState(null); // PredictResult 데이터를 저장
+    const [predictResultData, setPredictResultData] = useState(null);
 
     const enablePredictResult = (data) => {
-        if (!data) return; // 데이터 유효성 검사
+        if (!data) return;
         setShowPredictResult(true);
-        setPredictResultData(data); // 데이터를 저장
+        setPredictResultData(data);
     };
 
-    // Sidebar 상태 초기화
     const resetSidebar = () => {
         setShowPredictResult(false);
-        setPredictResultData(null); // 데이터 초기화
+        setPredictResultData(null);
     };
 
     return (
@@ -25,7 +24,6 @@ export const SidebarProvider = ({ children }) => {
     );
 };
 
-// SidebarContext를 안전하게 가져오는 Hook
 export const useSidebar = () => {
     const context = useContext(SidebarContext);
     if (!context) {
@@ -33,4 +31,3 @@ export const useSidebar = () => {
     }
     return context;
 };
-

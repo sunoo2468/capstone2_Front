@@ -7,13 +7,13 @@ function Logout({ onLogout }) {
     const location = useLocation();
 
     const handleLogout = () => {
-        onLogout(); // 로그인 상태 초기화
-        navigate('/'); // Dashboard로 이동
+        onLogout(); 
+        navigate('/'); 
     };
 
     const handleCancel = () => {
-        const previousPath = location.state?.from || '/'; // 이전 경로 또는 기본 경로 설정
-        navigate(previousPath); // 이전 페이지로 이동
+        const previousPath = location.state?.from || '/'; 
+        navigate(previousPath); 
     };
 
     return (

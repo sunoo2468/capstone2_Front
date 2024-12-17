@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import { useSidebar } from "./SidebarContext"; // SidebarContext 가져오기
+import { useSidebar } from "./SidebarContext"; 
 import "./Report.css";
 
 function Report() {
-    const { predictResultData } = useSidebar(); // 예측 결과 데이터 가져오기
-    const [reports, setReports] = useState([]); // 리포트 리스트 상태
+    const { predictResultData } = useSidebar();
+    const [reports, setReports] = useState([]); 
     const [searchTerm, setSearchTerm] = useState("");
     const [sortOrder, setSortOrder] = useState("latest");
-    const navigate = useNavigate(); // URL 이동을 위한 hook
+    const navigate = useNavigate();
 
-    // predictResultData가 변경될 때 리포트 자동 추가
     useEffect(() => {
         if (!predictResultData){
             alert("예측 결과 데이터가 없습니다.");
@@ -24,22 +23,20 @@ function Report() {
             date: predictResultData.fireDate,
             summary: `화재 리포트 요약 ${reports.length + 1}`,
             views: 0,
-            details: predictResultData, // 리포트 상세 데이터 저장
+            details: predictResultData, 
         };
 
-        // 기존 리포트에 중복되지 않게 추가
+        
         setReports((prevReports) => {
             const isDuplicate = prevReports.some((report) => report.date === newReport.date);
             return isDuplicate ? prevReports : [...prevReports, newReport];
         });
-    }, [predictResultData, reports.length]); // predictResultData 또는 reports.length 변경 시 실행
+    }, [predictResultData, reports.length]); 
 
-    // 리포트 클릭 시 이동
     const handleReportClick = (report) => {
         navigate(report.reportURL);
     }; 
 
-    // 검색 및 정렬된 리포트 필터링
     const filteredReports = reports
         .filter((report) =>
             report.summary.toLowerCase().includes(searchTerm.toLowerCase())
@@ -82,7 +79,7 @@ function Report() {
                         {filteredReports.map((report) => (
                             <li key={report.id} 
                                 className="report-item"
-                                onClick={() => handleReportClick(report)} // 클릭 이벤트
+                                onClick={() => handleReportClick(report)} 
                             >
                                 <strong>
                                     🔥 리포트 #{report.id} - {report.date}

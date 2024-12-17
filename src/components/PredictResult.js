@@ -1,12 +1,12 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import { useSidebar } from "./SidebarContext"; // SidebarContext에서 데이터 가져오기
+import { useSidebar } from "./SidebarContext"; 
 import "./PredictResult.css";
 
 function PredictResult() {
-    const { predictResultData } = useSidebar(); // 전역 상태에서 데이터 가져오기
+    const { predictResultData } = useSidebar(); 
 
-    // 데이터가 없으면 렌더링하지 않음
+    
     if (!predictResultData) {
         return (
             <div className="page-container">
@@ -18,7 +18,7 @@ function PredictResult() {
         );
     }
 
-    // 전역 상태에서 데이터를 구조 분해
+   
     const { fireDate, fireTime, fireLocation, subLocation, fireType, fireSize, traffic } = predictResultData;
 
     return (
@@ -78,3 +78,4 @@ function PredictResult() {
 }
 
 export default PredictResult;
+

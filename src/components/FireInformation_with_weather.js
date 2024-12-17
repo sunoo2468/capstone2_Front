@@ -43,7 +43,7 @@ function FireInformation() {
         setFireData({
             ...fireData,
             fireLocation: selectedLocation,
-            subLocation: '' // 상위 항목이 변경될 때 하위 항목 초기화
+            subLocation: '' 
         });
         setShowPictograms({ ...showPictograms, map: true });
     };
@@ -52,7 +52,6 @@ function FireInformation() {
         const { name, value } = e.target;
         setFireData({ ...fireData, [name]: value });
 
-        // 상태별로 픽토그램 표시 설정
         if (name === 'weather') {
             setShowPictograms({ ...showPictograms, weather: true });
         } else if (name === 'traffic') {

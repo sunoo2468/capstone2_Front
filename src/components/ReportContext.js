@@ -4,9 +4,9 @@ import { useSidebar } from "./SidebarContext";
 import "./ReportContext.css";
 
 function ReportContext() {
-    const { id } = useParams(); // URL에서 id 가져오기
-    const navigate = useNavigate(); // 목록으로 돌아가기 위한 훅
-    const { predictResultData } = useSidebar(); // 전역 데이터 가져오기
+    const { id } = useParams(); 
+    const navigate = useNavigate(); 
+    const { predictResultData } = useSidebar(); 
 
     // 초기 상태
     const [actualData, setActualData] = useState({
@@ -38,7 +38,7 @@ function ReportContext() {
             ladder: 2,
         };
 
-        let total = 5; // 총 항목 수
+        let total = 5; 
         let correct = 0;
 
         if (parseInt(actualData.fireFighter) === expected.fireFighter) correct++;
@@ -48,18 +48,18 @@ function ReportContext() {
         if (parseInt(actualData.ladder) === expected.ladder) correct++;
         
 
-        return Math.round((correct / total) * 100); // 퍼센트 계산
+        return Math.round((correct / total) * 100); 
     };
 
     const handleSave = () => {
-        const calculatedAccuracy = calculateAccuracy(); // 정확도 계산
+        const calculatedAccuracy = calculateAccuracy(); 
         setAccuracy(calculatedAccuracy);
         setIsSaved(true); // 저장 상태 변경
         setIsEditing(false); // 수정 종료
     };
 
     const handleEdit = () => {
-        setIsEditing(true); // 수정 활성화
+        setIsEditing(true); 
     };
 
     if (!predictResultData) {
